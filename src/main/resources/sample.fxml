@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="590.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+   <children>
+      <TableView fx:id="table" layoutX="-2.0" layoutY="29.0" prefHeight="270.0" prefWidth="677.0">
+        <columns>
+          <TableColumn fx:id="studentCode" prefWidth="100.0" text="Student Code" />
+          <TableColumn fx:id="name" prefWidth="150.0" text="Name" />
+            <TableColumn fx:id="unit" prefWidth="75.0" text="Unit" />
+            <TableColumn fx:id="phoneNumber" prefWidth="100.0" text="Phone Number" />
+            <TableColumn fx:id="address" prefWidth="250.0" text="Address" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDelete" layoutX="251.0" layoutY="337.0" mnemonicParsing="false" onAction="#DeleteStudent" prefHeight="44.0" prefWidth="55.0" text="Delete" />
+      <Button layoutX="377.0" layoutY="337.0" mnemonicParsing="false" onAction="#ShowDetailStudent" prefHeight="44.0" prefWidth="55.0" text="Update" />
+      <Button fx:id="btnAdd" layoutX="135.0" layoutY="337.0" mnemonicParsing="false" onAction="#AddStudent" prefHeight="44.0" prefWidth="55.0" text="Add" />
+      <Button fx:id="btnSwitch" layoutX="502.0" layoutY="337.0" mnemonicParsing="false" onAction="#SwitchView" prefHeight="44.0" prefWidth="85.0" text="Switch View" />
+   </children>
+</AnchorPane>
