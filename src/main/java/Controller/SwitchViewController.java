@@ -1,22 +1,19 @@
 package Controller;
 
 import Model.Student;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class SwitchViewController{
     @FXML
@@ -30,17 +27,33 @@ public class SwitchViewController{
     @FXML
     Label address;
     @FXML
-    MenuButton dropDown;
+    ComboBox comboBox;
+    ObservableList<Student> list;
 
-    public void setMenu(ObservableList<Student> list){
-        for(Student i:list){
-            dropDown.getItems().add(new MenuItem(i.getStudentCode()));
-        }
+    public void setDetail(Student student){
+        studentCode.setText("Mã sinh viên : " + student.getStudentCode());
+        name.setText(       "Tên                : " + student.getName());
+        unit.setText(       "Lớp                : " + student.getUnit());
+        phoneNumber.setText("SĐT                : " + student.getPhoneNumber());
+        address.setText(    "Địa chỉ           : " + student.getAddress());
     }
-    public void DropDownClicked(ActionEvent e){
-//        Student student = (Student) dropDown.getItems();
-//        System.out.println(student.toString());
-        System.out.println("ffffggggggg");
+
+    public void setMenu(ObservableList<Student> listNew){
+        list = FXCollections.observableArrayList();
+        list = listNew;
+        ObservableList<String> codeList = FXCollections.observableArrayList();
+        for(Student i:listNew){
+            codeList.add(i.getStudentCode());
+        }
+        comboBox.setItems(codeList);
+    }
+
+    public Student getStudent(String id){
+        for(Student i:list){
+            if(i.getStudentCode().equals(id))
+                return i;
+        }
+        return null;
     }
 
     public void goBack(ActionEvent e) throws IOException {
@@ -50,5 +63,10 @@ public class SwitchViewController{
         Parent studentViewParent = loader.load();
         Scene scene = new Scene(studentViewParent);
         stage.setScene(scene);
+    }
+
+    public void ClickedCB(ActionEvent e) {
+        String id = comboBox.getSelectionModel().getSelectedItem().toString();
+        setDetail(getStudent(id));
     }
 }

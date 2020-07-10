@@ -36,11 +36,12 @@ public class Controller implements Initializable {
     @FXML
     private ObservableList<Student> list;
     private FileService fileService;
+    private static final String filedir = "C:\\Users\\nguye\\Desktop\\text2.json";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fileService = new FileService();
-        list = fileService.readJson("C:\\Users\\nguye\\Desktop\\text2.json");
+        list = fileService.readJson(filedir);
         studentCode.setCellValueFactory(new PropertyValueFactory<Student, String>("studentCode"));
         name.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         unit.setCellValueFactory(new PropertyValueFactory<Student, String>("unit"));
@@ -79,7 +80,7 @@ public class Controller implements Initializable {
         AddStudentController addStudent = loader.getController();
         if (!addStudent.getStudent().getName().equals(""))
             list.add(addStudent.getStudent());
-        fileService.saveToJson("C:\\Users\\nguye\\Desktop\\text2.json");
+        fileService.saveToJson(filedir);
     }
 
     public void ShowDetailStudent(ActionEvent e) throws IOException {
@@ -105,7 +106,7 @@ public class Controller implements Initializable {
             StudentDetailController detailController = loader.getController();
             int index = getIndex(detailController.getStudent().getStudentCode());
             list.set(index, detailController.getStudent());
-            fileService.saveToJson("C:\\Users\\nguye\\Desktop\\text2.json");
+            fileService.saveToJson(filedir);
         }
     }
 
@@ -118,7 +119,7 @@ public class Controller implements Initializable {
             alert.show();
         } else {
             list.remove(selected);
-            fileService.saveToJson("C:\\Users\\nguye\\Desktop\\text2.json");
+            fileService.saveToJson(filedir);
         }
     }
 
